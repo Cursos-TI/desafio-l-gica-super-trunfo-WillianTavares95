@@ -1,222 +1,1396 @@
+
 #include <stdio.h>
+#include <stdlib.h>
 
 
 
-int main() {
-    // Dados da primeria carta
-    char estado1 [3];
-    char codigoCarta1 [5];
-    char nomeCidade1 [50]; // não deixar espaço em branco quando rodar o código " usar hífen" no nome da cidade
+int main (){
+
+   // Variaveis do jogo:
+    char nomeCidadeA [15]; 
+    char nomeCidadeB [15]; 
+    unsigned long int populacaoA, populacaoB;
+    float areaA, areaB;
+    float pibA, pibB;
+    int pontos_turisticosA, pontos_turisticosB;
+    float densidadePopulacionalA ,densidadePopulacionalB;   
+    float pib_per_capitaA, pib_per_capitaB;
+
+    int opcao1, opcao2, opcao3, opcao4, opcao5, opcao6;
+    unsigned long int resultadoA, resultadoB;
+    char jogadorA [20];
+    char jogadorB [20];
+
+    // interação com usuario.
+    printf(" ### Seja bem-vindo ao jogo Super trunfo! ###\n");
+    // Criar um nome para primeiro jodor
+    printf("Escolha o nome para jogadorA:\n");
+    scanf("%s", &jogadorA);
+    // Criar um nome para segundo jogador
+    printf("Escolha o nome para jogadorB:\n");
+    scanf("%s", &jogadorB);
+
+    printf(" ##### Seja bem vindo a primeira rodada #####\n");
+    printf("Escolha os atributos para batalhar:\n");
+
+    printf("1. População:\n");
+    printf("2. Área:\n");
+    printf("3. PIB:\n");
+    printf("4. Pontos turísticos:\n");
+    printf("5. Densidade Populacional:\n");
+    printf("6. PIB per capita:\n");
+
+    printf("Digite o número do atributo escolhido ?\n");
+    scanf("%i", &opcao1);
+
+switch (opcao1) {
+case 1:
+
+    //Atributos da primeria carta;
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+    scanf("%s", &nomeCidadeA);
+    printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+    scanf("%lu", &populacaoA);
     
-    unsigned long int populacao1;
-    float area1;
-    float pib1;
-    int numero_pontos_turisticos1;
+    //Atributos da segunda carta;
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+    scanf("%s", &nomeCidadeB);
+    printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+    scanf("%lu", &populacaoB);
 
-    float densidadePopulacional1;
-    float pib_per_capita1;
+    //Comparação dos Atributos;    
+    printf(" ##### Comparação dos atributos #####\n");
+    printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorA, nomeCidadeA, populacaoA);
+    printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorB, nomeCidadeB, populacaoB);
+
+    //operador ternario:
+    resultadoA = populacaoA > populacaoB ? 1 : 0;
+    resultadoB = populacaoB > populacaoA ? 1 : 0;
+
+    //lógica do jogo.
+    if (resultadoA) {
+        printf("Vencedor rodada %s,  cidade: %s população: %lu parabens\n",  jogadorA, nomeCidadeA, populacaoA);        
+    } else if (resultadoB) {
+        printf("Vencedor rodada %s,  cidade: %s  população: %lu parabens\n", jogadorB, nomeCidadeB, populacaoB);        
+    } else {
+        printf("Deu empate!\n");
+    }
+    break;
+
+case 2:
     
-    // dados da segunda carta
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+    scanf("%s", &nomeCidadeA);
 
-    char estado2 [3];
-    char codigoCarta2 [5];
-    char nomeCidade2 [50]; // não deixar espaço em branco quando rodar o código " usar hífen" no nome da cidade
-    
-    unsigned long int populacao2;
-    float area2;
-    float pib2;
-    int numero_pontos_turisticos2;
-
-    float densidadePopulacional2;
-    float pib_per_capita2;
-    
-    // lógica do jogo com switch
-    int opcao;
-
-
-    printf("*** Entrada de dados da Carta 1 ***\n");
-
-    printf("Entre com o Estado:\n");
-    scanf("%s", &estado1);
-
-    printf("Entre com o Código Carta:\n");
-    scanf("%s", &codigoCarta1);
-
-    printf("Entre com o Nome da cidade:\n");
-    scanf("%s", &nomeCidade1);
-
-    printf("Entre com a população:\n");
-    scanf("%lu", &populacao1);
-
-    printf("Entre com a área Km²:\n");
-    scanf("%f", &area1);
-
-    printf("Entre com PIB:\n");
-    scanf("%f", &pib1);
-
-    printf("Entre com o ponto turistico:\n");
-    scanf("%i", &numero_pontos_turisticos1);
-
-
-    printf("*** Entrada de dados da Carta 2 ***\n");
-
-    printf("Entre com o Estado:\n");
-    scanf("%s", &estado2);
-
-    printf("Entre com o Código Carta:\n");
-    scanf("%s", &codigoCarta2);
-
-    printf("Entre com o Nome da cidade:\n");
-    scanf("%s", &nomeCidade2);
-
-    printf("Entre com a população:\n");
-    scanf("%lu", &populacao2);
-
-    printf("Entre com a área Km²:\n");
-    scanf("%f", &area2);
-
-    printf("Entre com PIB:\n");
-    scanf("%f", &pib2);
-
-    printf("Entre com o ponto turistico:\n");
-    scanf("%i", &numero_pontos_turisticos2);
-
-    // parte de calculos 
-
-    densidadePopulacional1 = (float) populacao1 / area1;
-    pib_per_capita1 = (float) populacao1 / pib1;
-    
-    densidadePopulacional2 = (float) populacao2 / area2 ;
-    pib_per_capita2 = (float) populacao2 / pib2;
-
-    printf(" ########## ######### #######\n ");
-    printf("*** Saída de dados Carta 1 ***\n");
-
-    printf("Estado Carta 1: %s\n", estado1);
-    printf("Código Carta 1: %s\n", codigoCarta1);
-    printf("Nome da Cidade Carta 1: %s\n", nomeCidade1);
-    printf("População Carta 1: %lu\n", populacao1);
-    printf("Área Carta 1: %.2f Km²\n", area1);
-    printf("PIB Carta 1 R$: %.2F Bilhões de reais\n", pib1);
-    printf("Pontos Turisticos Carta 1: %i\n", numero_pontos_turisticos1);
-
-    printf("Densidade Populacional Carta 1: %.2f Km²\n", densidadePopulacional1);
-    printf("PIB per Capita Carta 1: %.2f Bilhões de reais\n", pib_per_capita1);
-
-    // Saída de dados Carta 2
-    printf(" ########## ######### ####### \n");
-    printf("*** Saída de dados Carta 2 ***\n");
-
-    printf("Estado Carta 1: %s\n", estado2);
-    printf("Código Carta 1: %s\n", codigoCarta2);
-    printf("Nome da Cidade Carta 1: %s\n", nomeCidade2);
-    printf("População Carta 1: %lu\n", populacao2);
-    printf("Área Carta 1: %.2f Km²\n", area2);
-    printf("PIB Carta 1: R$: %.2f Bilhões de reais\n", pib2);
-    printf("Pontos Turisticos Carta 1: %i\n", numero_pontos_turisticos2);
-
-    printf("Densidade Populacional Carta 1: %.2f Km²\n", densidadePopulacional2);
-    printf("PIB per Capita Carta 1: R$ %.2f Bilhões de reais\n", pib_per_capita2);
-
-
-    // Lógica do jogo
-    printf(" ########## ######### ####### \n");
-    printf(" ###### Escolha o atributo para batalhar ######\n");
-    printf("Atributo 1: População\n");
-    printf("Atributo 2: Área\n");
-    printf("Atributo 3: PIB\n");
-    printf("Atributo 4: Pontos Turísticos\n");
-    printf("Atributo 5: Densidade demográfica\n");
-    scanf("%i", &opcao);
-
-
-    switch (opcao) {
-    
-        case 1:
-            printf(" ###### Comparação das Cartas ###### \n");
-            printf("População Cidade: %s :  %lu\n",nomeCidade1, populacao1);
-            printf("População Cidade: %s :  %lu\n",nomeCidade2, populacao2);
-            break;
-
-        case 2:
-            printf(" ###### Comparação das Cartas ###### \n");
-            printf("Área Cidade: %s : %.2f Km²\n",nomeCidade1, area1);
-            printf("Área Cidade: %s : %.2f Km²\n",nomeCidade2, area2);
-            break;
-
-        case 3:
-            printf(" ###### Comparação das Cartas ###### \n");
-           printf("PIB Cidade: %s : R$%.2f bilhões de reais\n", nomeCidade1, pib1);
-           printf("PIB Cidade: %s : R$%.2f bilhões de reais\n", nomeCidade2, pib2);
-           break;
+    printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+    scanf("%f", &areaA);
         
-        case 4:
-            printf(" ###### Comparação das Cartas ###### \n");
-            printf("Pontos turísticos Cidade: %s: %i\n", nomeCidade1, numero_pontos_turisticos1);
-            printf("Pontos turísticos Cidade: %s: %i\n", nomeCidade2, numero_pontos_turisticos2);
-            break;
+    printf(" ### Entre com o nome da cidade de sua carta: %s, nome da cidade sem espaço : ### \n", jogadorB); 
+    scanf("%s", &nomeCidadeB);
 
-        case 5:
-            printf(" ###### Comparação das Cartas ###### \n");
-            printf("Densidade demográfica Cidade: %s : %.2f\n", nomeCidade1, densidadePopulacional1);
-            printf("Densidade demográfica Cidade: %s : %.2f\n", nomeCidade2, densidadePopulacional2);
-            break;
+    printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+    scanf("%f", &areaB);
+        
+    printf(" ##### Comparação dos atributos #####\n");
+    printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorA, nomeCidadeA, areaA);
+    printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorB, nomeCidadeB, areaB);   
+    
+    resultadoA = areaA > areaB ? 1 : 0;
+    resultadoB = areaB > areaA ? 1 : 0;
+    
+    if (resultadoA) {
+        printf("Vencedor rodada %s,  cidade: %s Área: %f Km² parabens\n",  jogadorA, nomeCidadeA, areaA);        
+    } else if (resultadoB) {
+        printf("Vencedor rodada %s,  cidade: %s  Área: %f Km² parabens\n", jogadorB, nomeCidadeB, areaB);        
+    } else {
+        printf("Deu empate!\n");
+    }
+    break;
 
-        default:
-            printf(" Opção inválida\n");
-            break;
+case 3:
 
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+    scanf("%s", &nomeCidadeA);
+
+    printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+    scanf("%f", &pibA);
+
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+    scanf("%s", &nomeCidadeB);
+
+    printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+    scanf("%f", &pibB);
+
+    printf(" ##### Comparação dos atributos #####\n");
+    printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorA, nomeCidadeA, pibA);
+    printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorB, nomeCidadeB, pibB);
+
+    resultadoA = pibA > pibB ? 1 : 0;
+    resultadoB = pibB > pibA ? 1 : 0;
+
+    if (resultadoA) {
+        printf("Vencedor rodada %s,  cidade: %s PIB R$: %f bilhões de reais parabens\n",  jogadorA, nomeCidadeA, pibA);        
+    } else if (resultadoB) {
+        printf("Vencedor rodada %s,  cidade: %s PIB R$:: %f bilhões de reais parabens\n", jogadorB, nomeCidadeB, pibB);        
+    } else {
+        printf("Deu empate!\n");
+    }
+    break;
+
+    case 4:
+
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+    scanf("%s", &nomeCidadeA);
+
+    printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorA);
+    scanf("%i", &pontos_turisticosA);
+    
+    //Atributos da segunda carta;
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+    scanf("%s", &nomeCidadeB);
+
+    printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorB);
+    scanf("%i", &pontos_turisticosB);
+
+    printf(" ##### Comparação dos atributos #####\n");
+    printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorA, nomeCidadeA, pontos_turisticosA);
+    printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorB, nomeCidadeB, pontos_turisticosB);
+
+    resultadoA = pontos_turisticosA > pontos_turisticosB ? 1 : 0;
+    resultadoB = pontos_turisticosB > pontos_turisticosA ? 1 : 0;
+
+    if (resultadoA) {
+        printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n",  jogadorA, nomeCidadeA, pontos_turisticosA);        
+    } else if (resultadoB) {
+        printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n", jogadorB, nomeCidadeB, pontos_turisticosB);        
+    } else {
+        printf("Deu empate!\n");
+    }
+    break;
+
+case 5:
+    //densidade populacional
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+    scanf("%s", &nomeCidadeA);
+
+    printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+    scanf("%lu", &populacaoA);
+
+    printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+    scanf("%f", &areaA);
+
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+    scanf("%s", &nomeCidadeB);
+
+    printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+    scanf("%lu", &populacaoB);
+
+    printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+    scanf("%f", &areaB);
+   
+    densidadePopulacionalA = (float) populacaoA / areaA;
+    densidadePopulacionalB = (float) populacaoB / areaB;
+
+    printf(" ##### Comparação dos atributos #####\n");
+    printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorA, nomeCidadeA, densidadePopulacionalA);
+    printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorB, nomeCidadeB, densidadePopulacionalB);
+
+    resultadoA = densidadePopulacionalA < densidadePopulacionalB ? 1 : 0;
+    resultadoB = densidadePopulacionalB < densidadePopulacionalA ? 1 : 0;
+
+    if (resultadoA) {
+        printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n",  jogadorA, nomeCidadeA, densidadePopulacionalA);        
+    } else if (resultadoB) {
+        printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n", jogadorB, nomeCidadeB, densidadePopulacionalB);        
+    } else {
+        printf("Deu empate!\n");
+    }
+    break;
+
+
+    case 6:
+    //pib per capita
+    // Jogador 1
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+    scanf("%s", &nomeCidadeA);
+
+    printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+    scanf("%lu", &populacaoA);
+
+    printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+    scanf("%f", &pibA);
+     //Jogador 2
+    printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+    scanf("%s", &nomeCidadeB);
+
+    printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+    scanf("%lu", &populacaoB);
+
+    printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+    scanf("%f", &pibB);
+
+    pib_per_capitaA = (float) populacaoA / pibA;
+    pib_per_capitaB = (float) populacaoB / pibB;
+
+
+    printf(" ##### Comparação dos atributos #####\n");
+    printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorA, nomeCidadeA, pib_per_capitaA);
+    printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorB, nomeCidadeB, pib_per_capitaB);
+
+    resultadoA = pib_per_capitaA > pib_per_capitaB ? 1 : 0;
+    resultadoB = pib_per_capitaB > pib_per_capitaA ? 1 : 0;
+
+    if (resultadoA) {
+        printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n",  jogadorA, nomeCidadeA, pib_per_capitaA);        
+    } else if (resultadoB) {
+        printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n", jogadorB, nomeCidadeB, pib_per_capitaB);        
+    } else {
+        printf("Deu empate!\n");
+    }
+    break;
+}
+
+    printf(" ###### Seja bem vindo a segunda rodada #####\n");
+    printf("Escolha os atributos para batalhar:\n");
+
+    printf("1. População:\n");
+    printf("2. Área:\n");
+    printf("3. PIB:\n");
+    printf("4. Pontos turísticos:\n");
+    printf("5. Densidade Populacional:\n");
+    printf("6. PIB per capita:\n");
+
+    printf("Digite o número do atributo escolhido ?\n");
+    scanf("%i", &opcao2);
+
+
+    if (opcao1 == opcao2) {
+        printf("Escolha o atributo diferente, não pode ser repedito !\n");
+        printf("Retorne ao menu inicial:\n");
+    }   else { switch (opcao2)
+    {
+    case 1:
+    
+     //Atributos da primeria carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     //Comparação dos Atributos;    
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorA, nomeCidadeA, populacaoA);
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorB, nomeCidadeB, populacaoB);
+ 
+     //operador ternario:
+     resultadoA = populacaoA > populacaoB ? 1 : 0;
+     resultadoB = populacaoB > populacaoA ? 1 : 0;
+ 
+     //lógica do jogo.
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s população: %lu parabens\n",  jogadorA, nomeCidadeA, populacaoA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  população: %lu parabens\n", jogadorB, nomeCidadeB, populacaoB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 2:
+     
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+         
+     printf(" ### Entre com o nome da cidade de sua carta: %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+         
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorA, nomeCidadeA, areaA);
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorB, nomeCidadeB, areaB);   
+     
+     resultadoA = areaA > areaB ? 1 : 0;
+     resultadoB = areaB > areaA ? 1 : 0;
+     
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s Área: %f Km² parabens\n",  jogadorA, nomeCidadeA, areaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  Área: %f Km² parabens\n", jogadorB, nomeCidadeB, areaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 3:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorA, nomeCidadeA, pibA);
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorB, nomeCidadeB, pibB);
+ 
+     resultadoA = pibA > pibB ? 1 : 0;
+     resultadoB = pibB > pibA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$: %f bilhões de reais parabens\n",  jogadorA, nomeCidadeA, pibA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$:: %f bilhões de reais parabens\n", jogadorB, nomeCidadeB, pibB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+     case 4:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorA);
+     scanf("%i", &pontos_turisticosA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorB);
+     scanf("%i", &pontos_turisticosB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorA, nomeCidadeA, pontos_turisticosA);
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorB, nomeCidadeB, pontos_turisticosB);
+ 
+     resultadoA = pontos_turisticosA > pontos_turisticosB ? 1 : 0;
+     resultadoB = pontos_turisticosB > pontos_turisticosA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n",  jogadorA, nomeCidadeA, pontos_turisticosA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n", jogadorB, nomeCidadeB, pontos_turisticosB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 5:
+     //densidade populacional
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+    
+     densidadePopulacionalA = (float) populacaoA / areaA;
+     densidadePopulacionalB = (float) populacaoB / areaB;
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorA, nomeCidadeA, densidadePopulacionalA);
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorB, nomeCidadeB, densidadePopulacionalB);
+ 
+     resultadoA = densidadePopulacionalA < densidadePopulacionalB ? 1 : 0;
+     resultadoB = densidadePopulacionalB < densidadePopulacionalA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n",  jogadorA, nomeCidadeA, densidadePopulacionalA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n", jogadorB, nomeCidadeB, densidadePopulacionalB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ 
+     case 6:
+     //pib per capita
+     // Jogador 1
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+      //Jogador 2
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     pib_per_capitaA = (float) populacaoA / pibA;
+     pib_per_capitaB = (float) populacaoB / pibB;
+ 
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorA, nomeCidadeA, pib_per_capitaA);
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorB, nomeCidadeB, pib_per_capitaB);
+ 
+     resultadoA = pib_per_capitaA > pib_per_capitaB ? 1 : 0;
+     resultadoB = pib_per_capitaB > pib_per_capitaA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n",  jogadorA, nomeCidadeA, pib_per_capitaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n", jogadorB, nomeCidadeB, pib_per_capitaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+
+    }}
+
+    printf(" ###### Seja bem vindo a terceira rodada #####\n");
+    printf("Escolha os atributos para batalhar:\n");
+
+    printf("1. População:\n");
+    printf("2. Área:\n");
+    printf("3. PIB:\n");
+    printf("4. Pontos turísticos:\n");
+    printf("5. Densidade Populacional:\n");
+    printf("6. PIB per capita:\n");
+
+    printf("Digite o número do atributo escolhido ?\n");
+    scanf("%i", &opcao3);
+
+
+    if (opcao1 == opcao2 == opcao3) {
+        printf("Escolha o atributo diferente, não pode ser repedito !\n");
+        printf("Retorne ao menu inicial:\n");
+    } else { switch (opcao3)
+    {
+    case 1:
+    
+     //Atributos da primeria carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     //Comparação dos Atributos;    
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorA, nomeCidadeA, populacaoA);
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorB, nomeCidadeB, populacaoB);
+ 
+     //operador ternario:
+     resultadoA = populacaoA > populacaoB ? 1 : 0;
+     resultadoB = populacaoB > populacaoA ? 1 : 0;
+ 
+     //lógica do jogo.
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s população: %lu parabens\n",  jogadorA, nomeCidadeA, populacaoA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  população: %lu parabens\n", jogadorB, nomeCidadeB, populacaoB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 2:
+     
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+         
+     printf(" ### Entre com o nome da cidade de sua carta: %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+         
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorA, nomeCidadeA, areaA);
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorB, nomeCidadeB, areaB);   
+     
+     resultadoA = areaA > areaB ? 1 : 0;
+     resultadoB = areaB > areaA ? 1 : 0;
+     
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s Área: %f Km² parabens\n",  jogadorA, nomeCidadeA, areaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  Área: %f Km² parabens\n", jogadorB, nomeCidadeB, areaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 3:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorA, nomeCidadeA, pibA);
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorB, nomeCidadeB, pibB);
+ 
+     resultadoA = pibA > pibB ? 1 : 0;
+     resultadoB = pibB > pibA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$: %f bilhões de reais parabens\n",  jogadorA, nomeCidadeA, pibA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$:: %f bilhões de reais parabens\n", jogadorB, nomeCidadeB, pibB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+     case 4:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorA);
+     scanf("%i", &pontos_turisticosA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorB);
+     scanf("%i", &pontos_turisticosB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorA, nomeCidadeA, pontos_turisticosA);
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorB, nomeCidadeB, pontos_turisticosB);
+ 
+     resultadoA = pontos_turisticosA > pontos_turisticosB ? 1 : 0;
+     resultadoB = pontos_turisticosB > pontos_turisticosA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n",  jogadorA, nomeCidadeA, pontos_turisticosA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n", jogadorB, nomeCidadeB, pontos_turisticosB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 5:
+     //densidade populacional
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+    
+     densidadePopulacionalA = (float) populacaoA / areaA;
+     densidadePopulacionalB = (float) populacaoB / areaB;
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorA, nomeCidadeA, densidadePopulacionalA);
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorB, nomeCidadeB, densidadePopulacionalB);
+ 
+     resultadoA = densidadePopulacionalA < densidadePopulacionalB ? 1 : 0;
+     resultadoB = densidadePopulacionalB < densidadePopulacionalA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n",  jogadorA, nomeCidadeA, densidadePopulacionalA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n", jogadorB, nomeCidadeB, densidadePopulacionalB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ 
+     case 6:
+     //pib per capita
+     // Jogador 1
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+      //Jogador 2
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     pib_per_capitaA = (float) populacaoA / pibA;
+     pib_per_capitaB = (float) populacaoB / pibB;
+ 
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorA, nomeCidadeA, pib_per_capitaA);
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorB, nomeCidadeB, pib_per_capitaB);
+ 
+     resultadoA = pib_per_capitaA > pib_per_capitaB ? 1 : 0;
+     resultadoB = pib_per_capitaB > pib_per_capitaA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n",  jogadorA, nomeCidadeA, pib_per_capitaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n", jogadorB, nomeCidadeB, pib_per_capitaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+    }}
+
+
+    printf(" ###### Seja bem vindo a quarta rodada #####\n");
+    printf("Escolha os atributos para batalhar:\n");
+
+    printf("1. População:\n");
+    printf("2. Área:\n");
+    printf("3. PIB:\n");
+    printf("4. Pontos turísticos:\n");
+    printf("5. Densidade Populacional:\n");
+    printf("6. PIB per capita:\n");
+
+    printf("Digite o número do atributo escolhido ?\n");
+    scanf("%i", &opcao4);
+
+
+    if (opcao1 == opcao2 == opcao3 == opcao4) {
+        printf("Escolha o atributo diferente, não pode ser repedito !\n");
+        printf("Retorne ao menu inicial:\n");
+    } else { switch (opcao4)
+    {
+    case 1:
+    
+     //Atributos da primeria carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     //Comparação dos Atributos;    
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorA, nomeCidadeA, populacaoA);
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorB, nomeCidadeB, populacaoB);
+ 
+     //operador ternario:
+     resultadoA = populacaoA > populacaoB ? 1 : 0;
+     resultadoB = populacaoB > populacaoA ? 1 : 0;
+ 
+     //lógica do jogo.
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s população: %lu parabens\n",  jogadorA, nomeCidadeA, populacaoA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  população: %lu parabens\n", jogadorB, nomeCidadeB, populacaoB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 2:
+     
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+         
+     printf(" ### Entre com o nome da cidade de sua carta: %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+         
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorA, nomeCidadeA, areaA);
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorB, nomeCidadeB, areaB);   
+     
+     resultadoA = areaA > areaB ? 1 : 0;
+     resultadoB = areaB > areaA ? 1 : 0;
+     
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s Área: %f Km² parabens\n",  jogadorA, nomeCidadeA, areaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  Área: %f Km² parabens\n", jogadorB, nomeCidadeB, areaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 3:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorA, nomeCidadeA, pibA);
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorB, nomeCidadeB, pibB);
+ 
+     resultadoA = pibA > pibB ? 1 : 0;
+     resultadoB = pibB > pibA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$: %f bilhões de reais parabens\n",  jogadorA, nomeCidadeA, pibA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$:: %f bilhões de reais parabens\n", jogadorB, nomeCidadeB, pibB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+     case 4:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorA);
+     scanf("%i", &pontos_turisticosA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorB);
+     scanf("%i", &pontos_turisticosB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorA, nomeCidadeA, pontos_turisticosA);
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorB, nomeCidadeB, pontos_turisticosB);
+ 
+     resultadoA = pontos_turisticosA > pontos_turisticosB ? 1 : 0;
+     resultadoB = pontos_turisticosB > pontos_turisticosA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n",  jogadorA, nomeCidadeA, pontos_turisticosA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n", jogadorB, nomeCidadeB, pontos_turisticosB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 5:
+     //densidade populacional
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+    
+     densidadePopulacionalA = (float) populacaoA / areaA;
+     densidadePopulacionalB = (float) populacaoB / areaB;
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorA, nomeCidadeA, densidadePopulacionalA);
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorB, nomeCidadeB, densidadePopulacionalB);
+ 
+     resultadoA = densidadePopulacionalA < densidadePopulacionalB ? 1 : 0;
+     resultadoB = densidadePopulacionalB < densidadePopulacionalA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n",  jogadorA, nomeCidadeA, densidadePopulacionalA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n", jogadorB, nomeCidadeB, densidadePopulacionalB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ 
+     case 6:
+     //pib per capita
+     // Jogador 1
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+      //Jogador 2
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     pib_per_capitaA = (float) populacaoA / pibA;
+     pib_per_capitaB = (float) populacaoB / pibB;
+ 
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorA, nomeCidadeA, pib_per_capitaA);
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorB, nomeCidadeB, pib_per_capitaB);
+ 
+     resultadoA = pib_per_capitaA > pib_per_capitaB ? 1 : 0;
+     resultadoB = pib_per_capitaB > pib_per_capitaA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n",  jogadorA, nomeCidadeA, pib_per_capitaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n", jogadorB, nomeCidadeB, pib_per_capitaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+
+    }}
+
+
+    printf(" ###### Seja bem vindo a quinta rodada #####\n");
+    printf("Escolha os atributos para batalhar:\n");
+
+    printf("1. População:\n");
+    printf("2. Área:\n");
+    printf("3. PIB:\n");
+    printf("4. Pontos turísticos:\n");
+    printf("5. Densidade Populacional:\n");
+    printf("6. PIB per capita:\n");
+
+    printf("Digite o número do atributo escolhido ?\n");
+    scanf("%i", &opcao5);
+
+
+    if (opcao1 == opcao2 == opcao3 == opcao4 == opcao5) {
+        printf("Escolha o atributo diferente, não pode ser repedito !\n");
+        printf("Retorne ao menu inicial:\n");
+    } else { switch (opcao5)
+    {
+    case 1:
+    
+     //Atributos da primeria carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     //Comparação dos Atributos;    
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorA, nomeCidadeA, populacaoA);
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorB, nomeCidadeB, populacaoB);
+ 
+     //operador ternario:
+     resultadoA = populacaoA > populacaoB ? 1 : 0;
+     resultadoB = populacaoB > populacaoA ? 1 : 0;
+ 
+     //lógica do jogo.
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s população: %lu parabens\n",  jogadorA, nomeCidadeA, populacaoA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  população: %lu parabens\n", jogadorB, nomeCidadeB, populacaoB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 2:
+     
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+         
+     printf(" ### Entre com o nome da cidade de sua carta: %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+         
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorA, nomeCidadeA, areaA);
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorB, nomeCidadeB, areaB);   
+     
+     resultadoA = areaA > areaB ? 1 : 0;
+     resultadoB = areaB > areaA ? 1 : 0;
+     
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s Área: %f Km² parabens\n",  jogadorA, nomeCidadeA, areaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  Área: %f Km² parabens\n", jogadorB, nomeCidadeB, areaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 3:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorA, nomeCidadeA, pibA);
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorB, nomeCidadeB, pibB);
+ 
+     resultadoA = pibA > pibB ? 1 : 0;
+     resultadoB = pibB > pibA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$: %f bilhões de reais parabens\n",  jogadorA, nomeCidadeA, pibA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$:: %f bilhões de reais parabens\n", jogadorB, nomeCidadeB, pibB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+     case 4:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorA);
+     scanf("%i", &pontos_turisticosA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorB);
+     scanf("%i", &pontos_turisticosB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorA, nomeCidadeA, pontos_turisticosA);
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorB, nomeCidadeB, pontos_turisticosB);
+ 
+     resultadoA = pontos_turisticosA > pontos_turisticosB ? 1 : 0;
+     resultadoB = pontos_turisticosB > pontos_turisticosA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n",  jogadorA, nomeCidadeA, pontos_turisticosA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n", jogadorB, nomeCidadeB, pontos_turisticosB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 5:
+     //densidade populacional
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+    
+     densidadePopulacionalA = (float) populacaoA / areaA;
+     densidadePopulacionalB = (float) populacaoB / areaB;
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorA, nomeCidadeA, densidadePopulacionalA);
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorB, nomeCidadeB, densidadePopulacionalB);
+ 
+     resultadoA = densidadePopulacionalA < densidadePopulacionalB ? 1 : 0;
+     resultadoB = densidadePopulacionalB < densidadePopulacionalA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n",  jogadorA, nomeCidadeA, densidadePopulacionalA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n", jogadorB, nomeCidadeB, densidadePopulacionalB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ 
+     case 6:
+     //pib per capita
+     // Jogador 1
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+      //Jogador 2
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     pib_per_capitaA = (float) populacaoA / pibA;
+     pib_per_capitaB = (float) populacaoB / pibB;
+ 
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorA, nomeCidadeA, pib_per_capitaA);
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorB, nomeCidadeB, pib_per_capitaB);
+ 
+     resultadoA = pib_per_capitaA > pib_per_capitaB ? 1 : 0;
+     resultadoB = pib_per_capitaB > pib_per_capitaA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n",  jogadorA, nomeCidadeA, pib_per_capitaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n", jogadorB, nomeCidadeB, pib_per_capitaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+
+    }}
+
+
+    printf(" ###### Seja bem vindo a quarta rodada #####\n");
+    printf("Escolha os atributos para batalhar:\n");
+
+    printf("1. População:\n");
+    printf("2. Área:\n");
+    printf("3. PIB:\n");
+    printf("4. Pontos turísticos:\n");
+    printf("5. Densidade Populacional:\n");
+    printf("6. PIB per capita:\n");
+
+    printf("Digite o número do atributo escolhido ?\n");
+    scanf("%i", &opcao6);
+
+
+    if (opcao1 == opcao2 == opcao3 == opcao4 == opcao5 == opcao6) {
+        printf("Escolha o atributo diferente, não pode ser repedito !\n");
+        printf("Retorne ao menu inicial:\n");
+    } else { switch (opcao6)
+    {
+    case 1:
+    
+     //Atributos da primeria carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     //Comparação dos Atributos;    
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorA, nomeCidadeA, populacaoA);
+     printf("Jogador %s, Cidade: %s, população: %lu\n", jogadorB, nomeCidadeB, populacaoB);
+ 
+     //operador ternario:
+     resultadoA = populacaoA > populacaoB ? 1 : 0;
+     resultadoB = populacaoB > populacaoA ? 1 : 0;
+ 
+     //lógica do jogo.
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s população: %lu parabens\n",  jogadorA, nomeCidadeA, populacaoA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  população: %lu parabens\n", jogadorB, nomeCidadeB, populacaoB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 2:
+     
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+         
+     printf(" ### Entre com o nome da cidade de sua carta: %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+         
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorA, nomeCidadeA, areaA);
+     printf("Jogador %s, Cidade: %s, Área: %f Km²\n", jogadorB, nomeCidadeB, areaB);   
+     
+     resultadoA = areaA > areaB ? 1 : 0;
+     resultadoB = areaB > areaA ? 1 : 0;
+     
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s Área: %f Km² parabens\n",  jogadorA, nomeCidadeA, areaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s  Área: %f Km² parabens\n", jogadorB, nomeCidadeB, areaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 3:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorA, nomeCidadeA, pibA);
+     printf("Jogador %s, Cidade: %s, PIB R$: %f bilhões de reais\n", jogadorB, nomeCidadeB, pibB);
+ 
+     resultadoA = pibA > pibB ? 1 : 0;
+     resultadoB = pibB > pibA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$: %f bilhões de reais parabens\n",  jogadorA, nomeCidadeA, pibA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB R$:: %f bilhões de reais parabens\n", jogadorB, nomeCidadeB, pibB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+     case 4:
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorA);
+     scanf("%i", &pontos_turisticosA);
+     
+     //Atributos da segunda carta;
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a quantidade de pontos turisticos: %s: ### \n", jogadorB);
+     scanf("%i", &pontos_turisticosB);
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorA, nomeCidadeA, pontos_turisticosA);
+     printf("Jogador %s, Cidade: %s, quantidade de pontos turisticos: %i\n", jogadorB, nomeCidadeB, pontos_turisticosB);
+ 
+     resultadoA = pontos_turisticosA > pontos_turisticosB ? 1 : 0;
+     resultadoB = pontos_turisticosB > pontos_turisticosA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n",  jogadorA, nomeCidadeA, pontos_turisticosA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s quantidade de pontos turisticos: %i parabens\n", jogadorB, nomeCidadeB, pontos_turisticosB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ case 5:
+     //densidade populacional
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorA, areaA);
+     scanf("%f", &areaA);
+ 
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf("Digite a Área em Km² da sua carta %s:\n", jogadorB, areaB);
+     scanf("%f", &areaB);
+    
+     densidadePopulacionalA = (float) populacaoA / areaA;
+     densidadePopulacionalB = (float) populacaoB / areaB;
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorA, nomeCidadeA, densidadePopulacionalA);
+     printf("Jogador %s, Cidade: %s, densidade populacional: %f hab/Km²\n", jogadorB, nomeCidadeB, densidadePopulacionalB);
+ 
+     resultadoA = densidadePopulacionalA < densidadePopulacionalB ? 1 : 0;
+     resultadoB = densidadePopulacionalB < densidadePopulacionalA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n",  jogadorA, nomeCidadeA, densidadePopulacionalA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s densidade populacional: %f hab/Km² parabens\n", jogadorB, nomeCidadeB, densidadePopulacionalB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+ 
+ 
+     case 6:
+     //pib per capita
+     // Jogador 1
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorA); 
+     scanf("%s", &nomeCidadeA);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorA);
+     scanf("%lu", &populacaoA);
+ 
+     printf(" ### Digite o PIB da sua carta %s: ### \n", jogadorA);
+     scanf("%f", &pibA);
+      //Jogador 2
+     printf(" ### Entre com o nome da cidade de sua carta %s, nome da cidade sem espaço : ### \n", jogadorB); 
+     scanf("%s", &nomeCidadeB);
+ 
+     printf(" ### Digite a população da sua carta %s: ### \n", jogadorB);
+     scanf("%lu", &populacaoB);
+ 
+     printf(" ### Digite a PIB da sua carta %s: ### \n", jogadorB);
+     scanf("%f", &pibB);
+ 
+     pib_per_capitaA = (float) populacaoA / pibA;
+     pib_per_capitaB = (float) populacaoB / pibB;
+ 
+ 
+     printf(" ##### Comparação dos atributos #####\n");
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorA, nomeCidadeA, pib_per_capitaA);
+     printf("Jogador %s, Cidade: %s, PIB per Capita R$: %f Reais\n", jogadorB, nomeCidadeB, pib_per_capitaB);
+ 
+     resultadoA = pib_per_capitaA > pib_per_capitaB ? 1 : 0;
+     resultadoB = pib_per_capitaB > pib_per_capitaA ? 1 : 0;
+ 
+     if (resultadoA) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n",  jogadorA, nomeCidadeA, pib_per_capitaA);        
+     } else if (resultadoB) {
+         printf("Vencedor rodada %s,  cidade: %s PIB per Capita R$: %f Reais parabens\n", jogadorB, nomeCidadeB, pib_per_capitaB);        
+     } else {
+         printf("Deu empate!\n");
+     }
+     break;
+
+    }}
+    printf(" ##### Resultado Final #####\n");
+    if (resultadoA > resultadoB) {
+        printf("O vencedor do jogo foi %s parabens\n", jogadorA);
+    } else if (resultadoA < resultadoB) {
+        printf("O vencedor do jogo foi %s parabens\n", jogadorB);
+    } else {
+        printf("O jogo deu Empate!");
     }
 
-    
-    if (populacao1 > populacao2) {
-        printf(" ###### Resultado  da Batalha: ######\n");
-        printf("População Cidade %s: %lu venceu !\n", nomeCidade1, populacao1);
-    }
-        else if (populacao1 < populacao2) {
-            printf(" ###### Resultado  da Batalha: ######\n");
-            printf("População Cidade %s : %lu venceu !\n", nomeCidade2, populacao2);
-        }           
-        else if (area1 > area2) {
-            printf(" ###### Resultado  da Batalha: ######\n");
-            printf("Área Cidade %s: %.2f Km² venceu !\n", nomeCidade1, area1);
-        }     
-        else if (area1 < area2) {
-            printf(" ###### Resultado  da Batalha: ######\n");
-            printf("Área Cidade %s : %.2f Km² venceu !\n", nomeCidade2, area2);
-        }       
-        else if (pib1 > pib2) {
-            printf(" ###### Resultado  da Batalha: ######\n");
-            printf("PIB Cidade %s: R$%.2f venceu !\n", nomeCidade1, pib1);
-            }  
-        
-        else if (pib1 < pib2) {
-            printf(" ###### Resultado  da Batalha: ######\n");
-            printf("PIB Cidade %s : R$%.2f venceu !\n", nomeCidade2, pib2);
-            }
-        else if (numero_pontos_turisticos1 > numero_pontos_turisticos2) {
-            printf(" ###### Resultado  da Batalha: ######\n");
-            printf("Número de pontos turísticos %s: %i venceu !\n", nomeCidade1, numero_pontos_turisticos1);
-            }     
-        else if (numero_pontos_turisticos1 < numero_pontos_turisticos2) {
-                printf(" ###### Resultado  da Batalha: ######\n");
-                printf("Número de pontos turísticos %s : %i Km² venceu !\n", nomeCidade2, numero_pontos_turisticos2);
-        }
-        else if (densidadePopulacional1 > densidadePopulacional2) {
-            printf(" ###### Resultado  da Batalha: ######\n");
-            printf("Densidade demográfica %s: R$%.2f venceu !\n", nomeCidade2, densidadePopulacional2);
-            }     
-        else if (densidadePopulacional2 > densidadePopulacional1) {
-                printf(" ###### Resultado  da Batalha: ######\n");
-                printf("Densidade demográfica %s : %.2f venceu !\n", nomeCidade1, densidadePopulacional1);
-            }
-            else {
-                printf(" #### Houve um empate! ####\n");
-            }
-    
-                    
-                    
-        
 
-    return 0;
+return 0;
+
 }
